@@ -1,0 +1,18 @@
+# direnv
+.envrc
+
+# Python
+__pycache__/
+.coverage*
+.pytest_cache/
+.venv/
+*.egg-info/
+*.eggs/
+htmlcov/
+test-results/
+
+# vscode
+.vscode/
+
+# py-air-control
+logging.conf

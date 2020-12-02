@@ -1,0 +1,22 @@
+language: python
+python:
+- '3.6'
+- '3.7'
+- '3.8'
+install:
+- pip install -r requirements_dev.txt
+- pip install -e .
+script:
+- black --check setup.py test sgp30_exporter
+- flake8 setup.py test sgp30_exporter
+- pytest test
+deploy:
+  provider: pypi
+  user: __token__
+  distributions: sdist
+  password:
+    secure: AWm6ixwmn6Xvkyma4lmBIF/QEu9b/ma86JMl4gLFGBKZHqP30SDL97BEefX+uMCzsmSsjrMZxOkZ2uaGhraUvetMz1ZhR/2y/FHTTHkAZJwuYVM1llFXFyf6U84MU7Wf+1EogWbrRQzIpIRE/kgwiXTq1UoI9pTrrk+JtxirKKmAWeTqCml3j0R2/oZz+a5hT0SKrvPe3u4XiPpsBPY/sXtb2idUaRXnEFQAO8mk9QrvaQvzKSHOYzynO/9M0Hn41xfZgeiQkAX9Acj5J1v3x5z/OPeWK32/A55o/PBxrWC829KPXTFg7hCBzEK3JQdV9/VSDI1NyD6NLSsPpSnJB0RI176dQXXfIor9SW3Jrncadkoj+bLpH2CnNX8kpTRr6CxtrwAIOzINyY5sAOf124GnSg6xo72gLYWnH2hc2o60zxtvGqqoaZ4jkL//c9UxBGweyeGCB2Huf/TmmQnafH1+rUf48xK7UyIijuaez8Mms2AA1RMwCPpYdCPAXIOyTBrgdefSWnkFl6+3oNBsVSW6dIwqDZc80N3OVGQ+xXaj787mcYU4bH6WdsjpcMnjznl9lyJXAIONrUd9RKR/fCZSif8ItUWWdlX4lLcS0dccxlbUwolStzQ9a4qRO9ywMLrD0ij8x+9deYYFTHfeWxqPM/99YDdYNramFPAydJw=
+  on:
+    tags: true
+    repo: urbas/sgp30-exporter
+    python: '3.8'
