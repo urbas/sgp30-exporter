@@ -12,7 +12,7 @@ class SGP30Source(abc.ABC):
         ...  # pragma: no cover
 
 
-class SGP30BackgroundSamplingSource(SGP30Source):
+class BackgroundSampler(SGP30Source):
     def __init__(self, sample_delay_seconds=1):
         logging.info("Starting the sgp30 sampler...")
         self._air_quality = sgp30.SGP30Reading(0, 0)
@@ -23,25 +23,28 @@ class SGP30BackgroundSamplingSource(SGP30Source):
         background_sampler_thread.start()
 
     def _sgp30_continuous_sampler(self):
-        # NB: every now and then communications with the SGP30 device can break down.
-        # An OSError number 121 (Remote I/O error) is thrown in this case. The only
-        # option in this case is to reset the SGP30 device and restart communications.
-        sgp30_dev = create_sgp30_device()
+        sgp30_dev = None
 
         while True:
-            logging.debug("Getting air quality values...")
             try:
+                if sgp30_dev is None:
+                    sgp30_dev = create_sgp30_device()
+                logging.debug("Getting air quality values...")
                 self._set_air_quality(sgp30_dev.get_air_quality())
                 logging.debug("Got air quality values: %s", self._air_quality)
                 time.sleep(self._sample_delay_seconds)
             except OSError as ex:
+                # NB: every now and then communications with the SGP30 device can break
+                # down. An OSError number 121 (Remote I/O error) is thrown in this case.
+                # The only option in this case is to reset the SGP30 device and restart
+                # communications.
                 time.sleep(self._sample_delay_seconds)
                 logging.error(
                     "Failed to communicate with the SGP30 device. Internal error: %s. "
                     "Trying to reconnect...",
                     ex,
                 )
-                sgp30_dev = create_sgp30_device()
+                sgp30_dev = None
 
     def get_air_quality(self):
         return self._air_quality

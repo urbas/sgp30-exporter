@@ -6,11 +6,11 @@ import prometheus_client.core
 from flask import Flask
 from werkzeug.middleware.dispatcher import DispatcherMiddleware
 
-from sgp30_exporter.sgp30_source import SGP30Source, SGP30BackgroundSamplingSource
+from sgp30_exporter.sgp30_source import SGP30Source, BackgroundSampler
 
 
 def create_app(sgp30_source: SGP30Source = None):
-    sgp30_source = sgp30_source or SGP30BackgroundSamplingSource()
+    sgp30_source = sgp30_source or BackgroundSampler()
     logging.info("Starting the exporter...")
     app = Flask(__name__)
     metrics_collector_registry = prometheus_client.CollectorRegistry(auto_describe=True)
