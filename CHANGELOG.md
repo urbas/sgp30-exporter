@@ -1,3 +1,5 @@
+# 0.1.3
+
 # 0.1.2
 
 - Bugfix: try to reconnect even if initialization failed.
