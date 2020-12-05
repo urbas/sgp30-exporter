@@ -26,6 +26,7 @@ setup(
     include_package_data=True,
     install_requires=REQUIREMENTS,
     keywords=["sgp30-exporter", "air quality", "prometheus", "exporter"],
+    license="MIT license",
     long_description_content_type="text/markdown",
     long_description=long_description,
     name="sgp30-exporter",
@@ -33,5 +34,6 @@ setup(
     setup_requires=SETUP_REQUIREMENTS,
     test_suite="test",
     tests_require=TEST_REQUIREMENTS,
+    url="https://github.com/urbas/sgp30-exporter",
     version="0.1.2",
 )
