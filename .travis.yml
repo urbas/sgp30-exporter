@@ -10,6 +10,7 @@ script:
 - black --check setup.py test sgp30_exporter
 - flake8 setup.py test sgp30_exporter
 - pytest test
+- mypy test sgp30_exporter
 deploy:
   provider: pypi
   user: __token__

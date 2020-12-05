@@ -14,7 +14,7 @@ REQUIREMENTS = [
 
 SETUP_REQUIREMENTS = ["pytest-runner"]
 
-TEST_REQUIREMENTS = ["pytest"]
+TEST_REQUIREMENTS = Path("requirements_test.txt").read_text().splitlines()
 
 CHANGELOG = Path("CHANGELOG.md").read_text()
 
