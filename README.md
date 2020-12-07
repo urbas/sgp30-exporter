@@ -18,7 +18,7 @@ sudo sgp30-exporter
 
 This will serve metrics at `http://0.0.0.0:9895/metrics`.
 
-Why `sudo`? SGP30 requires read-write access to the `/dev/i2c` interface.
+Note that `sudo` is required to give SGP30 read-write access to the `/dev/i2c` interface.
 
 You can make Prometheus scrape these with this scrape config:
 
