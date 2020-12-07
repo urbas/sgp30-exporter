@@ -1,4 +1,7 @@
-# 0.1.3
+# 0.2.0
+
+- Introduced the `sgp30-exporter` CLI application. Makes it easier to run this exporter.
+- Exporting metrics on port `9895` by default.
 
 # 0.1.2
 

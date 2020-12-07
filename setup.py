@@ -6,6 +6,7 @@ from pathlib import Path
 from setuptools import setup
 
 REQUIREMENTS = [
+    "click>=7.0.0",
     "Flask>=1.0.0",
     "prometheus_client>=0.8.0",
     "pimoroni-sgp30>=0.0.2",
@@ -23,6 +24,7 @@ long_description = f"{Path('README.md').read_text()}\n\n{CHANGELOG}"
 setup(
     author_email="matej.urbas@gmail.com",
     author="Matej Urbas",
+    entry_points={"console_scripts": ["sgp30-exporter = sgp30_exporter.main:main"]},
     include_package_data=True,
     install_requires=REQUIREMENTS,
     keywords=["sgp30-exporter", "air quality", "prometheus", "exporter"],
@@ -35,5 +37,5 @@ setup(
     test_suite="test",
     tests_require=TEST_REQUIREMENTS,
     url="https://github.com/urbas/sgp30-exporter",
-    version="0.1.3",
+    version="0.2.0",
 )

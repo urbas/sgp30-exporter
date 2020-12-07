@@ -13,10 +13,12 @@ pip install sgp30-exporter
 ## Running
 
 ```bash
-FLASK_ENV=production FLASK_APP=sgp30_exporter.app flask run --host 0.0.0.0
+sudo sgp30-exporter
 ```
 
-This will serve metrics at `http://localhost:5000/metrics`.
+This will serve metrics at `http://0.0.0.0:9895/metrics`.
+
+Why `sudo`? SGP30 requires read-write access to the `/dev/i2c` interface.
 
 You can make Prometheus scrape these with this scrape config:
 
@@ -24,7 +26,7 @@ You can make Prometheus scrape these with this scrape config:
 scrape_configs:
   - job_name: "sgp30"
     static_configs:
-      - targets: ["<the IP of your exporter host>:5000"]
+      - targets: ["<the IP of your exporter host>:9895"]
         labels:
           location: "bedroom"
 ```
