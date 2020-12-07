@@ -37,5 +37,5 @@ setup(
     test_suite="test",
     tests_require=TEST_REQUIREMENTS,
     url="https://github.com/urbas/sgp30-exporter",
-    version="0.2.0",
+    version="0.2.1",
 )
