@@ -12,7 +12,7 @@ def test_help(monkeypatch, capfd):
     with pytest.raises(SystemExit) as ex_info:
         main()
     assert ex_info.value.code == 0
-    assert "Usage: app-name" in capfd.readouterr().out
+    assert "Usage:" in capfd.readouterr().out
 
 
 def test_main(mock_app, monkeypatch):
