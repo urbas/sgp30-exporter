@@ -1,5 +1,7 @@
 # 0.2.1
 
+- CLI help test assertion less picky about help format.
+
 # 0.2.0
 
 - Introduced the `sgp30-exporter` CLI application. Makes it easier to run this exporter.
